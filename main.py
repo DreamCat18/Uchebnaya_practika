@@ -30,30 +30,30 @@ def main():
     """Основная функция консольного интерфейса."""
     parser = argparse.ArgumentParser(description='Модуль учета клиентов')
     subparsers = parser.add_subparsers(
-        dest='command', 
+        dest='command',
         help='Доступные команды'
     )
 
     # Команды для работы с клиентами
     customer_parser = subparsers.add_parser(
-        'customer', 
+        'customer',
         help='Операции с клиентами'
     )
     customer_subparsers = customer_parser.add_subparsers(dest='action')
 
     # Добавление клиента
     add_customer_parser = customer_subparsers.add_parser(
-        'add', 
+        'add',
         help='Добавить нового клиента'
     )
     add_customer_parser.add_argument(
-        '--name', 
-        required=True, 
+        '--name',
+        required=True,
         help='Полное имя'
     )
     add_customer_parser.add_argument(
-        '--contact', 
-        required=True, 
+        '--contact',
+        required=True,
         help='Контактная информация'
     )
     add_customer_parser.add_argument('--notes', help='Примечания')
@@ -63,63 +63,63 @@ def main():
 
     # Получение клиента по ID
     get_customer_parser = customer_subparsers.add_parser(
-        'get', 
+        'get',
         help='Найти клиента по ID'
     )
     get_customer_parser.add_argument(
-        '--id', 
-        type=int, 
-        required=True, 
+        '--id',
+        type=int,
+        required=True,
         help='ID клиента'
     )
 
     # Обновление клиента
     update_customer_parser = customer_subparsers.add_parser(
-        'update', 
+        'update',
         help='Обновить данные клиента'
     )
     update_customer_parser.add_argument(
-        '--id', 
-        type=int, 
-        required=True, 
+        '--id',
+        type=int,
+        required=True,
         help='ID клиента'
     )
     update_customer_parser.add_argument('--name', help='Новое полное имя')
     update_customer_parser.add_argument(
-        '--contact', 
+        '--contact',
         help='Новая контактная информация'
     )
     update_customer_parser.add_argument('--notes', help='Новые примечания')
 
     # Удаление клиента
     delete_customer_parser = customer_subparsers.add_parser(
-        'delete', 
+        'delete',
         help='Удалить клиента'
     )
     delete_customer_parser.add_argument(
-        '--id', 
-        type=int, 
-        required=True, 
+        '--id',
+        type=int,
+        required=True,
         help='ID клиента'
     )
 
     # Поиск клиентов
     search_customer_parser = customer_subparsers.add_parser(
-        'search', 
+        'search',
         help='Поиск клиентов'
     )
     search_customer_parser.add_argument('--name', help='Поиск по имени')
     search_customer_parser.add_argument('--contact', help='Поиск по контактам')
     search_customer_parser.add_argument(
-        '--start-date', 
+        '--start-date',
         help='Начальная дата регистрации (ГГГГ-ММ-ДД)'
     )
     search_customer_parser.add_argument(
-        '--end-date', 
+        '--end-date',
         help='Конечная дата регистрации (ГГГГ-ММ-ДД)'
     )
     search_customer_parser.add_argument(
-        '--notes', 
+        '--notes',
         help='Поиск по ключевому слову в примечаниях'
     )
 
@@ -129,24 +129,24 @@ def main():
 
     # Добавление заказа
     add_order_parser = order_subparsers.add_parser(
-        'add', 
+        'add',
         help='Добавить новый заказ'
     )
     add_order_parser.add_argument(
-        '--customer-id', 
-        type=int, 
-        required=True, 
+        '--customer-id',
+        type=int,
+        required=True,
         help='ID клиента'
     )
     add_order_parser.add_argument(
-        '--description', 
-        required=True, 
+        '--description',
+        required=True,
         help='Описание заказа'
     )
     add_order_parser.add_argument(
-        '--amount', 
-        type=float, 
-        required=True, 
+        '--amount',
+        type=float,
+        required=True,
         help='Сумма заказа'
     )
 
@@ -155,43 +155,43 @@ def main():
 
     # Получение заказа по ID
     get_order_parser = order_subparsers.add_parser(
-        'get', 
+        'get',
         help='Найти заказ по ID'
     )
     get_order_parser.add_argument(
-        '--id', 
-        type=int, 
-        required=True, 
+        '--id',
+        type=int,
+        required=True,
         help='ID заказа'
     )
 
     # Обновление заказа
     update_order_parser = order_subparsers.add_parser(
-        'update', 
+        'update',
         help='Обновить заказ'
     )
     update_order_parser.add_argument(
-        '--id', 
-        type=int, 
-        required=True, 
+        '--id',
+        type=int,
+        required=True,
         help='ID заказа'
     )
     update_order_parser.add_argument('--description', help='Новое описание')
     update_order_parser.add_argument(
-        '--amount', 
-        type=float, 
+        '--amount',
+        type=float,
         help='Новая сумма'
     )
 
     # Удаление заказа
     delete_order_parser = order_subparsers.add_parser(
-        'delete', 
+        'delete',
         help='Удалить заказ'
     )
     delete_order_parser.add_argument(
-        '--id', 
-        type=int, 
-        required=True, 
+        '--id',
+        type=int,
+        required=True,
         help='ID заказа'
     )
 
@@ -201,29 +201,29 @@ def main():
 
     # Отчет по клиентам
     report_subparsers.add_parser(
-        'customers', 
+        'customers',
         help='Сгенерировать отчет по клиентам'
     )
 
     # Отчет по заказам
     report_subparsers.add_parser(
-        'orders', 
+        'orders',
         help='Сгенерировать отчет по заказам'
     )
 
     # Отчет по клиентам по дате
     date_report_parser = report_subparsers.add_parser(
-        'customers-by-date', 
+        'customers-by-date',
         help='Сгенерировать отчет по клиентам за период'
     )
     date_report_parser.add_argument(
-        '--start-date', 
-        required=True, 
+        '--start-date',
+        required=True,
         help='Начальная дата (ГГГГ-ММ-ДД)'
     )
     date_report_parser.add_argument(
-        '--end-date', 
-        required=True, 
+        '--end-date',
+        required=True,
         help='Конечная дата (ГГГГ-ММ-ДД)'
     )
 
@@ -239,9 +239,9 @@ def main():
         if args.command == 'customer':
             if args.action == 'add':
                 customer = create_customer(
-                    db, 
-                    args.name, 
-                    args.contact, 
+                    db,
+                    args.name,
+                    args.contact,
                     args.notes
                 )
                 print(f'Клиент добавлен с ID: {customer.id}')
@@ -249,8 +249,8 @@ def main():
                 customers = get_customers(db)
                 for c in customers:
                     print(
-                        f'ID: {c.id},' 
-                        f'Имя: {c.full_name},' 
+                        f'ID: {c.id},'
+                        f'Имя: {c.full_name},'
                         f'Контакты: {c.contact_info}'
                     )
             elif args.action == 'get':
@@ -266,10 +266,10 @@ def main():
                     print('Клиент не найден')
             elif args.action == 'update':
                 customer = update_customer(
-                    db, 
-                    args.id, 
-                    args.name, 
-                    args.contact, 
+                    db,
+                    args.id,
+                    args.name,
+                    args.contact,
                     args.notes
                 )
                 if customer:
@@ -295,16 +295,16 @@ def main():
                     results = search_customers_by_notes(db, args.notes)
                 for c in results:
                     print(
-                        f'ID: {c.id},' 
+                        f'ID: {c.id},'
                         f'Имя: {c.full_name},'
                         f'Контакты: {c.contact_info}'
                     )
         elif args.command == 'order':
             if args.action == 'add':
                 order = create_order(
-                    db, 
-                    args.customer_id, 
-                    args.description, 
+                    db,
+                    args.customer_id,
+                    args.description,
                     args.amount
                 )
                 print(f'Заказ добавлен с ID: {order.id}')
@@ -330,9 +330,9 @@ def main():
                     print('Заказ не найден')
             elif args.action == 'update':
                 order = update_order(
-                    db, 
-                    args.id, 
-                    args.description, 
+                    db,
+                    args.id,
+                    args.description,
                     args.amount
                 )
                 if order:
