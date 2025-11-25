@@ -10,7 +10,7 @@ CSV_FILE = 'clients_100.csv'
 def read_customers_from_csv():
     customers = []
     if os.path.exists(CSV_FILE):
-        with open(CSV_FILE, 'r', encoding='utf-8') as f:
+        with open(CSV_FILE, 'r', encoding='utf-8-sig') as f:
             reader = csv.DictReader(f)
             for row in reader:
                 customer = Customer(
@@ -34,7 +34,7 @@ def write_customers_to_csv(customers):
                 'ID': c.id,
                 'ФИО': c.full_name,
                 'Контактная информация': c.contact_info,
-                'Email': '',  # For simplicity, set to empty for new entries
+                'Email': '',  
                 'Телефон': '',
                 'Дата регистрации': c.registration_date.strftime('%Y-%m-%d'),
                 'Примечания': c.notes or ''

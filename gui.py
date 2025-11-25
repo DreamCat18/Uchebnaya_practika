@@ -29,6 +29,8 @@ from reports import (
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
+        self.check_database()
+
         self.title("Управление клиентами и заказами")
         self.geometry("1000x700")
         ctk.set_appearance_mode("System")
@@ -48,7 +50,6 @@ class App(ctk.CTk):
     def setup_customers_tab(self):
         tab = self.tabview.tab("Клиенты")
 
-        # Search frame
         search_frame = ctk.CTkFrame(tab)
         search_frame.pack(pady=10, padx=10, fill="x")
 

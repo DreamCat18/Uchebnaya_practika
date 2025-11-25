@@ -2,5 +2,5 @@ import os
 
 DATABASE_URL = os.getenv(
     'DATABASE_URL',
-    'postgresql://username:password@localhost:5432/customer_db'
+    'sqlite:///./customer_db.db'
 )
