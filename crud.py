@@ -93,7 +93,6 @@ def delete_customer(db: Session, customer_id: int):
     return False
 
 
-# For orders, use DB
 def create_order(db: Session, customer_id: int, description: str, amount: float):
     order = Order(
         customer_id=customer_id,
