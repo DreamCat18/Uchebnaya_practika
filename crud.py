@@ -17,7 +17,9 @@ def read_customers_from_csv():
                     id=int(row['ID']),
                     full_name=row['ФИО'],
                     contact_info=row['Контактная информация'],
-                    registration_date=datetime.strptime(row['Дата регистрации'], '%Y-%m-%d'),
+                    registration_date=datetime.strptime(
+                        row['Дата регистрации'], '%Y-%m-%d'
+                    ),
                     notes=row['Примечания'] if row['Примечания'] else None
                 )
                 customers.append(customer)
@@ -26,7 +28,15 @@ def read_customers_from_csv():
 
 def write_customers_to_csv(customers):
     with open(CSV_FILE, 'w', newline='', encoding='utf-8') as f:
-        fieldnames = ['ID', 'ФИО', 'Контактная информация', 'Email', 'Телефон', 'Дата регистрации', 'Примечания']
+        fieldnames = [
+            'ID', 
+            'ФИО', 
+            'Контактная информация', 
+            'Email', 
+            'Телефон', 
+            'Дата регистрации', 
+            'Примечания'
+        ]
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for c in customers:
@@ -41,7 +51,12 @@ def write_customers_to_csv(customers):
             })
 
 
-def create_customer(db: Session, full_name: str, contact_info: str, notes: str = None):
+def create_customer(
+        db: Session, 
+        full_name: str, 
+        contact_info: str, 
+        notes: str = None
+):
     customers = read_customers_from_csv()
     next_id = max((c.id for c in customers), default=0) + 1
     registration_date = datetime.utcnow()
@@ -69,7 +84,13 @@ def get_customer_by_id(db: Session, customer_id: int):
     return None
 
 
-def update_customer(db: Session, customer_id: int, full_name: str = None, contact_info: str = None, notes: str = None):
+def update_customer(
+        db: Session, 
+        customer_id: int, 
+        full_name: str = None, 
+        contact_info: str = None, 
+        notes: str = None
+):
     customers = read_customers_from_csv()
     for c in customers:
         if c.id == customer_id:
@@ -93,7 +114,12 @@ def delete_customer(db: Session, customer_id: int):
     return False
 
 
-def create_order(db: Session, customer_id: int, description: str, amount: float):
+def create_order(
+        db: Session, 
+        customer_id: int, 
+        description: str, 
+        amount: float
+):
     order = Order(
         customer_id=customer_id,
         description=description,
@@ -119,7 +145,12 @@ def get_order_by_id(db: Session, order_id: int):
     return order
 
 
-def update_order(db: Session, order_id: int, description: str = None, amount: float = None):
+def update_order(
+        db: Session, 
+        order_id: int, 
+        description: str = None, 
+        amount: float = None
+):
     order = db.query(Order).filter(Order.id == order_id).first()
     if order:
         if description:

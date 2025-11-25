@@ -4,6 +4,7 @@ from datetime import datetime
 
 Base = declarative_base()
 
+
 class Customer(Base):
     __tablename__ = 'customers'
 
@@ -12,6 +13,7 @@ class Customer(Base):
     contact_info = Column(String, nullable=False)
     registration_date = Column(DateTime, default=datetime.utcnow)
     notes = Column(String)
+
 
 class Order(Base):
     __tablename__ = 'orders'
