@@ -26,6 +26,8 @@ from reports import (
 )
 
 
+from init_db import init_database
+
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -46,6 +48,9 @@ class App(ctk.CTk):
         self.setup_customers_tab()
         self.setup_orders_tab()
         self.setup_reports_tab()
+
+    def check_database(self):
+        init_database()
 
     def setup_customers_tab(self):
         tab = self.tabview.tab("Клиенты")

@@ -1,3 +1,5 @@
-crudSQLAlchemy==2.0.23
+customtkinter==5.2.2
 psycopg2-binary==2.9.9
+SQLAlchemy==2.0.23
+pandas==2.3.3
 python-dotenv==1.0.0

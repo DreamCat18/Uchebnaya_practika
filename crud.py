@@ -1,7 +1,7 @@
 import csv
 import os
 from datetime import datetime
-from models import Customer, Order
+from init_db import Customer, Order
 from sqlalchemy.orm import Session
 
 CSV_FILE = 'clients_100.csv'
